@@ -1,0 +1,24 @@
+<tool id="blat.34" name="blat" version="v.34">
+  <description>Search for IR64 homologs using BLAT v.34</description>
+   <command>/usr/local/bin/blat /home/user/bin/galaxy-dist/tools/blat.34/ir64.v1.assembly.fasta  $query -maxIntron=$maxIntron $output </command>
+  <inputs>
+    <param format="data" name="query" type="data">
+      <label>Query FASTA file</label>
+    </param>
+    <param name="maxIntron" size="20" type="text" value="600" label="maximum intron size allowed">
+    </param>
+  </inputs>
+ 
+
+  <outputs>
+    <data format="tabular" name="output" />
+  </outputs>
+
+
+  <tests>
+  </tests>
+  <help>
+    You can view the original documentation at Jim Kent's site...
+    
+   </help>
+</tool>

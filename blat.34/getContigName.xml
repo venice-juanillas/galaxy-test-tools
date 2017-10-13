@@ -1,0 +1,43 @@
+<tool id="get-cont-name" name="Get-contig-names" version="v.01">
+  <description> Extract contig or scaffold or chromosome names from rice genomes (draft and reference)</description>
+   <command interpreter = "perl"> getContigName.pl $reference  $output </command>
+
+  <inputs>
+    <param name="reference" type="select" value="/home/galaxy/galaxy-dev/tools/blat.34/refs/ir64.v1.assembly.fasta">
+      <label>Reference genome to get contig names</label>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/ir64.v1.assembly.fasta">IR64 draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/os.dj123.cshl.draft.1.0.scaffold.fa">DJ123 draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/kasalath_genome.fasta">Kasalath draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/irgsp_nb10_12chr.fasta">Nipponbare reference 1.0</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/nb_msu6.fasta">Nipponbare reference MSU6</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/os.nippo.irgsp4.fasta">Nipponbare reference IRGSP4</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/9311.fa">93-11 latest release (12chr+12k scaffs)</option>
+
+    </param>
+
+
+  </inputs>
+ 
+
+  <outputs>
+    <data format="tabular" name="output" label="Scaffold names of ${reference.value_label}" />
+  </outputs>
+
+
+  <tests>
+  </tests>
+
+  <help>
+**Get-contig-names - what it does**
+
+This tool extracts the names of all contigs/scaffolds/chromosomes in the multi-FASTA published ref and draft genomes (Nipponbare 1.0 japonica reference, MSU6 Nipponbare, DJ123 - aus, IR64 - indica: Schatz et al, 2014 and Kasalath - aus: Sakai et al 2014). 
+
+The scaffold / chromosome name spelling is important. This tool makes sure you get the correct contig names in your genome of choice.
+
+Grep_ was used to extract contig names from the genome FASTA file...
+
+.. _Grep: http://www.gnu.org/savannah-checkouts/gnu/grep/manual/grep.html
+
+    
+   </help>
+</tool>

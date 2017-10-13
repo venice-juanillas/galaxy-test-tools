@@ -1,0 +1,61 @@
+<tool id="blat.34" name="Find-seq" version="v.01">
+  <description>Align your sequences to new draft rice genomes</description>
+   <command>/usr/local/bin/blat $reference  $query -maxIntron=$maxIntron -tileSize=$tile -out=$outformat $output </command>
+  <inputs>
+    <param format="data" name="query" type="data">
+      <label>Query FASTA file</label>
+    </param>
+
+    <param name="reference" type="select" value="/home/galaxy/galaxy-dev/tools/blat.34/refs/ir64.v1.assembly.fasta">
+      <label>Reference genome to search</label>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/ir64.v1.assembly.fasta">IR64 draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/os.dj123.cshl.draft.1.0.scaffold.fa">DJ123 draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/kasalath_genome.fasta">Kasalath draft1</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/irgsp_nb10_12chr.fasta">Nipponbare reference 1.0</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/nb_msu6.fasta">Nipponbare reference MSU6</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/os.nippo.irgsp4.fasta">Nipponbare reference IRGSP4</option>
+      <option value="/home/galaxy/galaxy-dist/tools/blat.34/refs/9311.fa">93-11 latest release (12chr+12k scaffs)</option>
+
+     </param>
+
+    <param name="tile" size="10" type="text" value="11" label="size of match that triggers an alignment(between 8 - 12 allowed)">
+    </param>
+
+    <param name="maxIntron" size="20" type="text" value="5000" label="maximum intron size allowed">
+    </param>
+
+    <param name="outformat" type="select" value="psl">
+      <label>Format for alignment output</label>
+      <option value="psl">Default blat tabular format,no sequence</option>
+      <option value="pslx">blat tabular format with sequence</option>
+      <option value="blast">Similar to NCBI BLAST format</option>
+      <option value="blast8">NCBI BLAST tabular format</option>
+      <option value="blast9">NCBI BLAST tabular format with comments</option>
+    </param>
+
+
+
+  </inputs>
+ 
+
+  <outputs>
+    <data format="tabular" name="output" label="Alignment of ${query.name} vs ${reference.value_label}" />
+  </outputs>
+
+
+  <tests>
+  </tests>
+  <help>
+**Find-seq - what it does**
+
+Find-seq is a specialized alignment tool to find the location of your sequences of interest in the most recent Nipponbare build, and the 3 published draft rice genomes (IR64, DJ123:Schatz et al 2014; Kasalath:Sakai et al 2014)
+
+It uses blat_ as alignment engine. The default parameters of blat should work fine for rice genomes. 
+
+.. _blat: http://users.soe.ucsc.edu/~kent/
+
+After identifying the  scaffold/contig region aligning to your query sequence, you could extract the subsequence from the draft genome using the Get-subseq tool.
+
+    
+   </help>
+</tool>

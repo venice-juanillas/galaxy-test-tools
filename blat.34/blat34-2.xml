@@ -1,0 +1,52 @@
+<tool id="blat.34.2" name="blat sequence alignment" version="v.34">
+  <description>Local alignment of two sequences using blat</description>
+   <command>/usr/local/bin/blat $reference  $query -maxIntron=$maxIntron -tileSize=$tile -out=$outformat $output </command>
+  <inputs>
+    <param format="data" name="query" type="data">
+      <label>Query FASTA file</label>
+    </param>
+
+    <param name="reference" type="data">
+      <label>Reference sequence to search</label>
+    </param>
+
+    <param name="tile" size="10" type="text" value="11" label="size of match that triggers an alignment(between 8 - 12 allowed)">
+    </param>
+
+    <param name="maxIntron" size="20" type="text" value="5000" label="maximum intron size allowed - for genomic sequences">
+    </param>
+
+    <param name="outformat" type="select" value="psl">
+      <label>Format for alignment output</label>
+      <option value="psl">Default blat tabular format,no sequence</option>
+      <option value="pslx">blat tabular format with sequence</option>
+      <option value="blast">Similar to NCBI BLAST format</option>
+      <option value="blast8">NCBI BLAST tabular format</option>
+      <option value="blast9">NCBI BLAST tabular format with comments</option>
+    </param>
+
+
+
+  </inputs>
+ 
+
+  <outputs>
+    <data format="tabular" name="output" label="Alignment of ${query.name} vs ${reference.name}" />
+  </outputs>
+
+
+  <tests>
+  </tests>
+  <help>
+**blat - what it does**
+
+blat_ is a general-purpose local alignment tool from Jim Kent. It does pair-wise alignment of multi-FASTA files. If you wish to find your own sequence against the published rice genomes, use Find-seq, a specialized blat deployment.
+
+The default parameters of blat should work fine for rice genomes. 
+
+.. _blat: http://users.soe.ucsc.edu/~kent/
+
+
+    
+   </help>
+</tool>
